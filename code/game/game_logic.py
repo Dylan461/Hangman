@@ -40,7 +40,7 @@ class GameLogic:
 
     def win_check(self):
         i = 0
-        while i in range(0, len(self.display)):
+        while i < len(self.display):
             if self.display[i] == "_":
                 return
             i += 1
@@ -101,4 +101,4 @@ class GameLogic:
         return self.game_status
 
     def get_letters(self):
-        return list(self.letters)
+        return letters
