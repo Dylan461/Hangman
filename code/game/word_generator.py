@@ -10,6 +10,3 @@ class WordGenenator:
         str = str.replace('"','')
         str = str.replace(']', '')
         return str
-
-w = WordGenenator()
-print(w.generate_word())
