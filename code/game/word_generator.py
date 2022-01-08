@@ -1,16 +1,15 @@
 import random
+from pip._vendor import requests
 
 class WordGenenator:
-    words = []
-    file_name = "text_files\words.txt"
-
-    def __init__(self):
-        f = open(self.file_name)
-
-        for line in f:
-            self.words.append(line)
-
-        f.close()
 
     def generate_word(self):
-        return random.choice(self.words)
+        response = requests.get("https://random-word-api.herokuapp.com/word?number=1")
+        str = response.content.decode("utf-8")
+        str = str.replace('[', '')
+        str = str.replace('"','')
+        str = str.replace(']', '')
+        return str
+
+w = WordGenenator()
+print(w.generate_word())
