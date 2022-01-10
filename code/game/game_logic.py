@@ -3,7 +3,6 @@ from game.word_generator import WordGenenator
 word = ""
 letters = ("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 alist = []
-incorrect_guesses = []
 max_incorrect_guesses = 8
 count = 0
 game_status = "Stop"
@@ -17,18 +16,16 @@ class GameLogic:
         self.alist = list(letters)
         self.count = 0
         self.game_status = "Running"
-        self.incorrect_guesses = []
         str = ""
-        for i in range(0, len(self.word) - 1):
+        for i in range(0, len(self.word)):
             str = str +  "_"
         self.display = str
-
     '''
     Checks
     '''
 
     def word_contains_letter(self, char):
-        for i in range(0, len(self.word) - 1):
+        for i in range(0, len(self.word)):
             if char == self.word[i]:
                 return True
         return False
@@ -47,16 +44,8 @@ class GameLogic:
         self.game_status = "Win"
 
     def lose_check(self):
-        if count == max_incorrect_guesses:
+        if self.count == max_incorrect_guesses:
             self.game_status = "Lose"
-
-
-    '''
-    Add
-    '''
-
-    def add_incorrect_list(self, char):
-        incorrect_guesses.append(char)
 
     '''
     Remove
@@ -75,7 +64,7 @@ class GameLogic:
 
     def correct_guess(self, char):
         new_word = ""
-        for i in range(0, len(self.word) - 1):
+        for i in range(0, len(self.word)):
             if char == self.word[i]:
                 new_word += char
             elif self.display[i] != "_":
@@ -92,7 +81,7 @@ class GameLogic:
         return self.display
 
     def get_word(self):
-        return word
+        return self.word
 
     def is_in_list(self, char: str):
         return char in self.alist
