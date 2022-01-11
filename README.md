@@ -2,14 +2,9 @@
 
 
 
-## <u>Table of Contents: </u>
-<ul>
-    <li>[Hangman](#hangman-description)</li>
-</ul>
-
-<ul>
-    <li>[Author](#author)</li>
-</ul>
+## Table of Contents: 
+- [Hangman](#hangman-description)
+- [Author](#author)
 
 ## Hangman Description
 <p>
