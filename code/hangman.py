@@ -1,9 +1,11 @@
+from game.word_generator import WordGenenator
 from game.game_logic import GameLogic
 import tkinter as tk
 import sys
 
 class Game():
 
+    wg = WordGenenator()
     window = tk.Tk()
     window2 = tk.Tk()
     window2.withdraw()
@@ -15,6 +17,10 @@ class Game():
     image_str = "images/image"
     image_num = 1
 
+    '''
+    Button actions
+    '''
+
     def reset_button(self, button):
         button["state"] = tk.NORMAL
         button["relief"] = tk.RAISED
@@ -23,7 +29,13 @@ class Game():
         button["state"] = tk.DISABLED
         button["relief"] = tk.FLAT
 
+    def disable_all_letter_buttons(self):
+        for button in self.button_list: 
+            self.disable_button(button)
+
     def restart_game(self):
+        self.gl.set_word(self.wg.generate_word())
+
         for button in self.button_list:
             self.reset_button(button)
         self.gl.start_game()
@@ -34,12 +46,8 @@ class Game():
         self.window2.withdraw()
         self.image_num = 1
 
-        
 
-    def disable_all_letter_buttons(self):
-        for button in self.button_list: 
-            self.disable_button(button)
-
+    #Letter button inputs
     def button_input(self, button):
         user_input = button.cget("text")
         self.disable_button(button)
@@ -68,7 +76,10 @@ class Game():
             self.word_display["text"] = self.gl.get_word()
             self.open_end_screen("Game Over")
 
+    #Open game window
     def open_window(self):
+
+        self.gl.set_word(self.wg.generate_word())
         self.gl.start_game()
 
         self.photo_lbl.configure(image = self.photo)

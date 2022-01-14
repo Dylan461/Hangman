@@ -11,15 +11,13 @@ display = ""
 
 class GameLogic:
     def start_game(self):
-        wg = WordGenenator()
-        self.word = wg.generate_word()
         self.alist = list(letters)
         self.count = 0
-        self.game_status = "Running"
         str = ""
         for i in range(0, len(self.word)):
             str = str +  "_"
         self.display = str
+        self.game_status = "Running"
     '''
     Checks
     '''
@@ -91,3 +89,10 @@ class GameLogic:
 
     def get_letters(self):
         return letters
+
+    '''
+    Setters
+    '''
+
+    def set_word(self, str):
+        self.word = str
