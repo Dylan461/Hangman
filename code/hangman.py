@@ -3,6 +3,7 @@ from game.game_logic import GameLogic
 import tkinter as tk
 import sys
 
+
 class Game():
 
     wg = WordGenenator()
@@ -78,7 +79,7 @@ class Game():
 
     #Open game window
     def open_window(self):
-
+        self.window.title("Game Screen")
         self.gl.set_word(self.wg.generate_word())
         self.gl.start_game()
 
@@ -102,12 +103,13 @@ class Game():
             i += 1
 
         self.window_settings(self.window)
-        self.window.eval('tk::PlaceWindow . center')
         self.window.mainloop()
 
     def open_end_screen(self, str):
         self.window2 = tk.Tk()
         self.window2.geometry("500x500")
+        self.window2.configure(bg = "gray")
+        self.window2.title("End Screen")
         self.window_settings(self.window2)
 
         status_lbl = tk.Label(self.window2, text = str, font = ("Arial", 25))
@@ -125,13 +127,11 @@ class Game():
 
     def window_settings(self, win):
         win.wm_attributes("-toolwindow", "True")
-        win.overrideredirect(True)
 
     def exit(self):
         self.window.destroy()
         self.window2.destroy()
         sys.exit()
-
 
 g = Game()
 g.open_window()
